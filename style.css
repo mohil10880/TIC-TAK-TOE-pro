@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.welcome-card,
+.game-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.score-item {
+    text-align: center;
+}
+
+.score-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.player-score {
+    color: #667eea;
+}
+
+.tie-score {
+    color: #999;
+}
+
+.computer-score {
+    color: #e74c3c;
+}
+
+.score-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.status {
+    margin: 20px 0;
+    padding: 12px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.status-icon {
+    font-size: 1.3rem;
+}
+
+.status.player-turn {
+    color: #667eea;
+    background: #e8ecff;
+}
+
+.status.computer-turn {
+    color: #e74c3c;
+    background: #ffe8e8;
+}
+
+.status.game-over {
+    color: #f39c12;
+    background: #fff4e6;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background: #f8f9fa;
+    border: none;
+    border-radius: 12px;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell:hover:not(.cell-x):not(.cell-o):not(:disabled) {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+.cell:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.cell.cell-x {
+    color: #667eea;
+    background: #e8ecff;
+}
+
+.cell.cell-o {
+    color: #e74c3c;
+    background: #ffe8e8;
+}
+
+.cell.winning-cell {
+    background: #fff4e6 !important;
+    box-shadow: 0 0 0 4px #f39c12;
+    animation: pulse 0.5s ease-in-out;
+}
+
+.cell:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .welcome-card,
+    .game-card {
+        padding: 25px;
+    }
+    
+    .cell {
+        font-size: 2.5rem;
+    }
+    
+    .scoreboard {
+        padding: 15px;
+    }
+    
+    .score-value {
+        font-size: 1.5rem;
+    }
+}
